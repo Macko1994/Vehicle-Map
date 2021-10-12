@@ -1,0 +1,34 @@
+<google-map
+  height="100vh"
+  width="100%"
+  [zoom]="zoom"
+  [center]="center"
+  [options]="options">
+
+  <map-marker-clusterer [imagePath]="markerClustererImagePath" [ignoreHidden]="true">
+    <map-marker
+      #mapMarker="mapMarker"
+      *ngFor="let marker of markers"
+      [position]="marker.position"
+      [options]="marker.options"
+      [icon]="marker.icon"
+      [visible]="status.value ? marker.visible : true"
+      (mapClick)="openInfo(mapMarker, marker.title)"
+    ></map-marker>
+  </map-marker-clusterer>
+
+  <div class="select-category">
+    <mat-select [formControl]="status" multiple>
+      <div class="options" [ngStyle]="{'zIndex': '100'}">
+        <mat-option (click)="filterMarkers()" [value]="'All'">All</mat-option>
+        <mat-option (click)="filterMarkers()"
+                    *ngFor="let status of statusesList"
+                    [value]="status"
+        >{{status}}</mat-option>
+      </div>
+    </mat-select>
+  </div>
+
+  <map-info-window style="white-space: pre-line">{{ infoContent }}</map-info-window>
+  <mat-progress-spinner class="spinner" [mode]="'indeterminate'" *ngIf="loading$ | async" diameter="40"></mat-progress-spinner>
+</google-map>
