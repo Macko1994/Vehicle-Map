@@ -1,6 +1,6 @@
 # VehicleMapApp
 
-Aplikacja została wykonana w technologii Angular (wersja 12) i wykorzystuje Google Maps API w celu wyświetlenia obiektów na mapie.
+Aplikacja została wykonana w technologii Angular i wykorzystuje Google Maps API w celu wyświetlenia obiektów na mapie.
 
 Wersja Node.js 14.
 
